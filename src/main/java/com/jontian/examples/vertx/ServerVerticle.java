@@ -1,6 +1,6 @@
-package com.jontian.examples.spring;
+package com.jontian.examples.vertx;
 
-import com.jontian.examples.spring.verticle.ControllerVerticle;
+import com.jontian.examples.vertx.verticle.ControllerVerticle;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;

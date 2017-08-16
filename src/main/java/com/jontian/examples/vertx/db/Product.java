@@ -1,4 +1,4 @@
-package com.jontian.examples.spring.db;
+package com.jontian.examples.vertx.db;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Trivial JPA db for vertx-spring demo
+ * Trivial JPA db for vertx-vertx demo
  */
 @Entity
 @Table(name="PRODUCT")

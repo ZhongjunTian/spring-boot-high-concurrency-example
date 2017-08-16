@@ -1,9 +1,9 @@
-package com.jontian.examples.spring.verticle;
+package com.jontian.examples.vertx.verticle;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jontian.examples.spring.VertxSpringBootRunner;
-import com.jontian.examples.spring.db.ProductService;
+import com.jontian.examples.vertx.VertxSpringBootRunner;
+import com.jontian.examples.vertx.db.ProductService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Handler;
 import io.vertx.core.eventbus.Message;
