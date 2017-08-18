@@ -9,7 +9,8 @@ public class Application {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(Application.class)
-                .web(false).run(args);
+//                .web(false)//禁用tomcat
+                .run(args);
     }
 
 }

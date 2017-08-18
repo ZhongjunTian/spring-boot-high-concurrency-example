@@ -22,39 +22,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class ControllerVerticle extends AbstractVerticle {
 
-  public static final String ALL_PRODUCTS_ADDRESS = "example.all.products";
+    public static final String ALL_PRODUCTS_ADDRESS = "example.all.products";
 
-  @Autowired
-  private ProductService productService;
+    @Autowired
+    private ProductService productService;
 
-  public ControllerVerticle() {
-    VertxSpringBootRunner.register(this);
-  }
-
-  private Handler<Message<String>> allProductsHandler(ProductService service) {
-    // It is important to use an executeBlocking construct here
-    // as the productService calls are blocking (dealing with a database)
-    return msg -> vertx.<String>executeBlocking(future -> {
-        try {
-          ObjectMapper mapper = Json.mapper;
-          future.complete(mapper.writeValueAsString(productService.getAllProducts()));
-        } catch (JsonProcessingException e) {
-          System.out.println("Failed to serialize result");
-          future.fail(e);
-        }
-      },
-      result -> {
-        if (result.succeeded()) {
-          msg.reply(result.result());
-        } else {
-          msg.reply(result.cause().toString());
-        }
-      });
-  }
-
-  @Override
-  public void start() throws Exception {
-    super.start();
-    vertx.eventBus().<String>consumer(ALL_PRODUCTS_ADDRESS).handler(allProductsHandler(productService));
-  }
+    public ControllerVerticle() {
+        VertxSpringBootRunner.register(this);
+    }
+    @Override
+    public void start() throws Exception {
+        super.start();
+        vertx.eventBus().<String>consumer(ALL_PRODUCTS_ADDRESS).handler(msg -> vertx.<String>executeBlocking(future -> {
+                    try {
+                        ObjectMapper mapper = Json.mapper;
+                        future.complete(mapper.writeValueAsString(productService.getAllProducts()));
+                    } catch (JsonProcessingException e) {
+                        System.out.println("Failed to serialize result");
+                        future.fail(e);
+                    }
+                }, false,
+                result -> {
+                    if (result.succeeded()) {
+                        msg.reply(result.result());
+                    } else {
+                        msg.reply(result.cause().toString());
+                    }
+                }));
+    }
 }
