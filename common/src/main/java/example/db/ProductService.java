@@ -20,7 +20,15 @@ public class ProductService {
     }
 
     public static void burnCpu() {
-        double[] data = new double[10000];
+        burnCpu(10000);
+    }
+
+    public static void burnCpuSlightly() {
+        burnCpu(1000);
+    }
+
+    public static void burnCpu(int n) {
+        double[] data = new double[n];
         for(int i=0; i<data.length; i++){
             data[i] = Math.random();
         }

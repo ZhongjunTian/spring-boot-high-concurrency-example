@@ -11,7 +11,7 @@ public class ProductServiceTest {
         long t0 = System.currentTimeMillis();
         ProductService service = new ProductService();
         for(int i=0; i<1000; i++)
-            service.burnCpu();
+            service.burnCpu(1000);
         long t1 = System.currentTimeMillis();
         System.out.println((t1-t0));
     }

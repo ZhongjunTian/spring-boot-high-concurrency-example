@@ -33,9 +33,9 @@ public class IndexController {
     @Autowired
     ProductService productService;
     @GetMapping("/")
-    public List<Product> index() throws InterruptedException, SuspendExecution {
+    public String index() throws InterruptedException, SuspendExecution {
         Fiber.sleep(10);
-        ProductService.burnCpu();
-        return productService.getAllProducts();
+        ProductService.burnCpuSlightly();
+        return "hello";//productService.getAllProducts();
     }
 }
