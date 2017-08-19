@@ -1,0 +1,14 @@
+{
+  "name": "cupid",
+  "version": "1.0.0",
+  "description": "JS is the best language in the world",
+  "main": "cupid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
