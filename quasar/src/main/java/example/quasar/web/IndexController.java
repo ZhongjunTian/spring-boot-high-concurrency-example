@@ -16,21 +16,26 @@
  * Copyright the original author Dave Syer.
  * Released under the ASF 2.0 license.
  */
-package comsat.sample.quasar.web;
+package example.quasar.web;
 
 import co.paralleluniverse.fibers.Fiber;
 import co.paralleluniverse.fibers.SuspendExecution;
-import org.springframework.stereotype.Controller;
+import example.db.Product;
+import example.db.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class IndexController {
-
+    @Autowired
+    ProductService productService;
     @GetMapping("/")
-    public String index() throws InterruptedException, SuspendExecution {
+    public List<Product> index() throws InterruptedException, SuspendExecution {
         Fiber.sleep(10);
-        return "hello";
+        ProductService.burnCpu();
+        return productService.getAllProducts();
     }
 }

@@ -16,12 +16,10 @@ public class ProductService {
     private ProductRepository repo;
 
     public List<Product> getAllProducts() {
-        blockIo();
-        burnCpu();
         return repo.findAll();
     }
 
-    protected void burnCpu() {
+    public static void burnCpu() {
         double[] data = new double[10000];
         for(int i=0; i<data.length; i++){
             data[i] = Math.random();
@@ -29,7 +27,7 @@ public class ProductService {
         Arrays.sort(data);
     }
 
-    protected void blockIo() {
+    public static void blockIo() {
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {

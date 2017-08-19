@@ -17,6 +17,8 @@ public class ProductController {
     ProductService productService;
     @GetMapping("/products")
     public List<Product> products(){
+        ProductService.blockIo();
+        ProductService.burnCpu();
         return productService.getAllProducts();
     }
 }

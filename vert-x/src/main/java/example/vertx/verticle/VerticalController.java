@@ -2,12 +2,15 @@ package example.vertx.verticle;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import example.db.Product;
 import example.vertx.VertxRegister;
 import example.db.ProductService;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 /**
@@ -34,7 +37,7 @@ public class VerticalController extends AbstractVerticle {
         vertx.eventBus().<String>consumer(ALL_PRODUCTS_ADDRESS).handler(msg -> vertx.<String>executeBlocking(future -> {
                     try {
                         ObjectMapper mapper = Json.mapper;
-                        future.complete(mapper.writeValueAsString(productService.getAllProducts()));
+                        future.complete(mapper.writeValueAsString(getAllProducts()));
                     } catch (JsonProcessingException e) {
                         System.out.println("Failed to serialize result");
                         future.fail(e);
@@ -47,5 +50,11 @@ public class VerticalController extends AbstractVerticle {
                         msg.reply(result.cause().toString());
                     }
                 }));
+    }
+
+    private Object getAllProducts() {
+        ProductService.blockIo();
+        ProductService.burnCpu();
+        return productService.getAllProducts();
     }
 }

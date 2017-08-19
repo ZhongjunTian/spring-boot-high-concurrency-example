@@ -16,12 +16,18 @@
  * Copyright the original author Dave Syer.
  * Released under the ASF 2.0 license.
  */
-package comsat.sample.quasar;
+package example.quasar;
 
 import co.paralleluniverse.springframework.boot.autoconfigure.web.FiberSpringBootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @FiberSpringBootApplication
+@ComponentScan(basePackages = {"example.db","example.quasar"})
+@EnableJpaRepositories(basePackages = "example.db")
+@EntityScan(basePackages = "example.db")
 public class SampleJpaApplication {
     public static void main(String[] args) throws Exception {
         SpringApplication.run(SampleJpaApplication.class, args);
