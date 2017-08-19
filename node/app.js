@@ -3,7 +3,7 @@ const app = express()
 
 const sortDouble = () => {
 	const arr = [];
-	for (let i = 0; i < 10000; i++) {
+	for (let i = 0; i < 1000; i++) {
 		arr.push(Math.random());
 	}
 	arr.sort( (a, b) => a - b);
@@ -12,7 +12,7 @@ const sortDouble = () => {
 app.get('/', (req, res) => {
 	new Promise( resolve => {
 		setTimeout( () => {
-			sortDouble();
+			//sortDouble();
 			resolve();
 		}, 10)
 	})
