@@ -1,5 +1,7 @@
 const express = require('express')
-const app = express()
+      cluster = require('cluster'),
+      numCPUs = require('os').cpus().length,
+          app = express()
 
 const sort10000Double = () => {
 	const arr = [];
@@ -10,19 +12,34 @@ const sort10000Double = () => {
 	arr.sort( (a, b) => a - b);
 }
 
-app.get('/', (req, res) => {
-	new Promise( resolve => {
-		setTimeout( () => {
-			sort10000Double();
-			sort10000Double();
-			resolve();
-		}, 10)
-	})
-	.then( result => {
-		res.send("Hello World");
-	})
-})
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
 
-app.listen(666, () => {
-  console.log('Example app listening on port 666!')
-})
+      // Fork workers.
+  	for (let i = 0; i < numCPUs; i++) {
+    	cluster.fork();
+  	}
+
+  	cluster.on('exit', (worker, code, signal) => {
+    	console.log(`worker ${worker.process.pid} died`);
+  	});
+} else {
+	app.get('/', (req, res) => {
+		new Promise( resolve => {
+			setTimeout( () => {
+				sort10000Double();
+				sort10000Double();
+				resolve();
+			}, 10)
+		})
+		.then( result => {
+			res.send("Hello World");
+		})
+	})
+
+	app.listen(666, () => {
+	  console.log('Example app listening on port 666!')
+	})
+
+	console.log(`Worker ${process.pid} started`);
+}

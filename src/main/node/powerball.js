@@ -10,7 +10,7 @@ const path                 = require("path");
 const BALL_ROLLING_SPEED   = 2;
 const BALL_PICKING_TIME    = 100;
 
-const MAX_RUNNING_TIME     = 10000;
+const MAX_RUNNING_TIME     = 1000;
 
 const GRAND_PRIZE_ODDS     = 1 / 292201338;
 const WIN_1_MILLION_ODDS   = 1 / 11688053.52;
@@ -43,7 +43,7 @@ const getPowerball = (callback) => {
         let white_ball = 0;
         let get_white_ball_rolling = setInterval( () => {
           white_ball = getWhiteBall();
-        }, BALL_ROLLING_SPEED);
+        }, Math.random() * BALL_ROLLING_SPEED);
         setTimeout(() => {
           console.log("\u25CB --> \u25CB --> \u25CB --> \u25CB --> \u25CB --> \u25CB");
           stopAndPickBall(get_white_ball_rolling);
@@ -60,7 +60,7 @@ const getPowerball = (callback) => {
        let red_ball = 0;
        let get_red_ball_rolling = setInterval( () => {
          red_ball = getRedBall();
-       }, BALL_ROLLING_SPEED);
+       }, Math.random() * BALL_ROLLING_SPEED);
        setTimeout(() => {
           console.log("\uD83D\uDD34 --> \uD83D\uDD34 --> \uD83D\uDD34 --> \uD83D\uDD34 --> \uD83D\uDD34 --> \uD83D\uDD34");
          stopAndPickBall(get_red_ball_rolling);
