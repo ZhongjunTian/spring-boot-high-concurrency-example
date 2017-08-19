@@ -9,6 +9,7 @@
   "author": "Lu",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "express": "^4.15.4"
   }
 }
