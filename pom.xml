@@ -19,6 +19,7 @@
         <module>common</module>
         <module>tomcat</module>
         <module>quasar</module>
+        <module>comsat-example</module>
     </modules>
 
 </project>
