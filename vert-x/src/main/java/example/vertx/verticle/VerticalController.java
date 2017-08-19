@@ -1,12 +1,10 @@
-package com.jontian.examples.vertx.verticle;
+package example.vertx.verticle;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jontian.examples.vertx.VertxSpringBootRunner;
-import com.jontian.examples.vertx.db.ProductService;
+import example.vertx.VertxRegister;
+import example.db.ProductService;
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Handler;
-import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,15 +18,15 @@ import org.springframework.stereotype.Service;
  * extremely quick to respond)
  */
 @Service
-public class ControllerVerticle extends AbstractVerticle {
+public class VerticalController extends AbstractVerticle {
 
-    public static final String ALL_PRODUCTS_ADDRESS = "example.all.products";
+    public static final String ALL_PRODUCTS_ADDRESS = "/products";
 
     @Autowired
     private ProductService productService;
 
-    public ControllerVerticle() {
-        VertxSpringBootRunner.register(this);
+    public VerticalController() {
+        VertxRegister.register(this);
     }
     @Override
     public void start() throws Exception {

@@ -1,7 +1,7 @@
-package com.jontian.examples.vertx.verticle;
+package example.tomcat;
 
-import com.jontian.examples.vertx.db.Product;
-import com.jontian.examples.vertx.db.ProductService;
+import example.db.Product;
+import example.db.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

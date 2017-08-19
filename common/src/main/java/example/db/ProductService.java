@@ -1,4 +1,4 @@
-package com.jontian.examples.vertx.db;
+package example.db;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.jontian.examples.vertx;
+package example.vertx;
 
-import com.jontian.examples.vertx.verticle.ControllerVerticle;
+import example.vertx.verticle.VerticalController;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
  * SpringDemoVerticle)
  */
 @Service
-public class ServerVerticle extends AbstractVerticle {
-  public ServerVerticle() {
-    VertxSpringBootRunner.register(this);
+public class VerticleServer extends AbstractVerticle {
+  public VerticleServer() {
+    VertxRegister.register(this);
   }
 
   @Override
@@ -24,8 +24,8 @@ public class ServerVerticle extends AbstractVerticle {
       if (req.method() == HttpMethod.GET) {
         req.response().setChunked(true);
 
-        if (req.path().equals("/products")) {
-          vertx.eventBus().<String>send(ControllerVerticle.ALL_PRODUCTS_ADDRESS, "", result -> {
+        if (req.path().equals(VerticalController.ALL_PRODUCTS_ADDRESS)) {
+          vertx.eventBus().<String>send(VerticalController.ALL_PRODUCTS_ADDRESS, "", result -> {
             if (result.succeeded()) {
               req.response().setStatusCode(200).write(result.result().body()).end();
             } else {

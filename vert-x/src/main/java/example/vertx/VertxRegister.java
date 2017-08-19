@@ -1,4 +1,4 @@
-package com.jontian.examples.vertx;
+package example.vertx;
 
 import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
@@ -10,8 +10,8 @@ import io.vertx.core.logging.LoggerFactory;
  * Runner for the vertx-vertx sample
  */
 
-public class VertxSpringBootRunner {
-    private static Logger logger = LoggerFactory.getLogger(VertxSpringBootRunner.class);
+public class VertxRegister {
+    private static Logger logger = LoggerFactory.getLogger(VertxRegister.class);
     private static final Vertx vertx;
     static{
         VertxOptions options = new VertxOptions();

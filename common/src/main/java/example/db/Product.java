@@ -1,4 +1,4 @@
-package com.jontian.examples.vertx.db;
+package example.db;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

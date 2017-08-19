@@ -1,8 +1,6 @@
-package com.jontian.examples.vertx.db;
+package example.db;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by zhongjun on 8/18/17.

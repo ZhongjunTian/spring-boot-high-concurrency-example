@@ -1,4 +1,4 @@
-package com.jontian.examples.vertx.db;
+package example.db;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
