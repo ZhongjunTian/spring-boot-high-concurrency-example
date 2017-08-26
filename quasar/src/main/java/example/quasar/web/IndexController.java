@@ -26,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,16 @@ public class IndexController {
     @GetMapping("/")
     public String index() throws InterruptedException, SuspendExecution {
         Fiber.sleep(10);
-        ProductService.burnCpuSlightly();
-        return "hello";//productService.getAllProducts();
+
+        return productService.findOne().toString();
+    }
+
+    public static void burnCpu(int n) {
+        System.out.println("burn thread "+Thread.currentThread());
+        double[] data = new double[n];
+        for(int i=0; i<data.length; i++){
+            data[i] = Math.random();
+        }
+        Arrays.sort(data);
     }
 }

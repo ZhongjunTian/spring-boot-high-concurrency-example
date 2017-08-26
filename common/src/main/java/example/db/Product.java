@@ -14,16 +14,28 @@ public class Product {
 
   @Id
   @Column(name="ID")
-  private Integer productId;
+  protected Long productId;
 
   @Column
-  private String description;
+  protected String description;
 
-  public Integer getProductId() {
+  public Long getProductId() {
     return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
   }
 
   public String getDescription() {
     return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String toString(){
+    return "id: "+productId+" desc: "+description;
   }
 }

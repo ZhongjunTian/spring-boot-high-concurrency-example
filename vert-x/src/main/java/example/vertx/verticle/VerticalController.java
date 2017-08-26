@@ -54,7 +54,7 @@ public class VerticalController extends AbstractVerticle {
 
     private Object getAllProducts() {
         ProductService.blockIo();
-        ProductService.burnCpu();
+        ProductService.burnCpu(1000);
         return productService.getAllProducts();
     }
 }

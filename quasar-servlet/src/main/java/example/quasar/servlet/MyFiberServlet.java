@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import javax.ws.rs.client.Client;
+/*
+https://github.com/spring-projects/spring-boot/blob/master/spring-boot-samples/spring-boot-sample-jersey/
 
+ */
 @WebServlet(urlPatterns = "/fiberservlet")
 public class MyFiberServlet extends FiberHttpServlet {
     final static Client httpClient = AsyncClientBuilder.newClient();
